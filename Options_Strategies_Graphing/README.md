@@ -1,5 +1,6 @@
 # Options_Strategies_Graphing
 This function returns a graph showing the possible returns of a portfolio containing calls, puts, and long/short equity based on the stock price at the options' expiration date. 
+THIS IS STILL A WORK IN PROGRESS
 
 ## Function
 options_graph2(Price, Portfolio, title = None, maximum = None, minimum = None)
