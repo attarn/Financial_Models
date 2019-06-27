@@ -262,7 +262,7 @@ result.index = temp_index
 ### Finding differences in price between asset and synthetic asset and adding to 'result'
 # This is the Converstion Trading opportunity. It is based on old slow data so it's not
 # useful in real life but it shows that there can be arbitrage opportunities
-Arbitrage = pd.Series(Strike - Stocks + CallIV - PutIV)
+Arbitrage = pd.Series(Strike - Stocks + pd.to_numeric(CallIV) - pd.to_numeric(PutIV))
 result = result.assign(Arbitrage=Arbitrage.values)
 
 ### Proving that the Black Scholes Prices satisfy Put-Call Parity. All values are 
@@ -311,10 +311,10 @@ Graph_Put = pd.Series(name = 'Put')
 Graph_Stock = pd.Series(Graph-Stocks[Close_To_Strike])
 for i in Graph:
     if i < Strike.loc[Close_To_Strike]:
-        Graph_Call = Graph_Call.append(pd.Series(-result['Call','Bid'][Close_To_Strike]))
+        Graph_Call = Graph_Call.append(pd.Series(-float(result['Call','Bid'][Close_To_Strike])))
         Graph_Put = Graph_Put.append(pd.Series(-i+Strike.loc[Close_To_Strike]-result['Put','Ask'][Close_To_Strike]))
     else:
-        Graph_Call = Graph_Call.append(pd.Series(i-Strike.loc[Close_To_Strike]-result['Call','Bid'][Close_To_Strike]))
+        Graph_Call = Graph_Call.append(pd.Series(i-Strike.loc[Close_To_Strike]-float(result['Call','Bid'][Close_To_Strike])))
         Graph_Put = Graph_Put.append(pd.Series(-result['Put','Ask'][Close_To_Strike]))
 Graph_Call = Graph_Call.reset_index(drop = True)
 Graph_Put = Graph_Put.reset_index(drop = True)
@@ -343,53 +343,6 @@ print('Price of Synthetic Call $'+ str(round(abs(Synth_Call[0]),4)))
 print('\n')
 print('Difference between Call and Synthetic Call $'+ str(round(float(Synth_Call.head(1) - Graph_Call.head(1)),3)))
 print('Calculated Arbitrage from DataFrame $', str(round(result['Arbitrage',''][Close_To_Strike],3)))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
