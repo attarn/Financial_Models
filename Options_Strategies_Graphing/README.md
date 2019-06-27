@@ -23,3 +23,21 @@ options_graph2(Price, Portfolio, title = None, maximum = None, minimum = None)
                 ex. "Synthetic Straddle"
         maximum: "bounded" or "inf" (optional). Finds maximum returns
         minimum: "bounded" or "inf" (optional). Finds maximum losses
+        
+## Examples 
+### Synthetic Strangle
+Price = 37.5
+Portfolio = pd.DataFrame([['Stock', 37.5, -1],
+                          ['Call', 40, 1, 2],
+                          ['Call', 35, 1, 4]],
+                columns = ['Asset','Strike','Number','Price'])
+options_graph2(Price, Portfolio,'Synthetic Strangle', maximum = 'inf', minimum = 'bounded')
+ Picture
+ 
+#### Bear Spread
+Price = 32
+Portfolio = pd.DataFrame([['Call', 30, -1, 3],
+                          ['Call', 35, 1, 1]],
+                columns = ['Asset','Strike','Number','Price'])
+options_graph2(Price, Portfolio,'Bear Spread', maximum = 'bounded', minimum = 'bounded')
+​
