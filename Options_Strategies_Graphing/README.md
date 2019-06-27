@@ -1,2 +1,24 @@
-# Financial_Models
-This file imports options data from Yahoo and stock price information from Alpha Vantage. It puts the options data into a dataframe, filters it by Open Interest, last trade date and only includes where there exists calls and puts with the same strike and expiry. It adds the last price of the stock, adds three measures of the volatility, and adds the Black-Scholes price of the options. It calculates the arbitrage opportunity from Conversion Arbitrage and shows that there is no arbitrage opportunity with the Black-Scholes prices. Lastly, it selects an option and graphs the synthetic equivalent showing the opportunity for arbitrage and showing that the Conversion Arbitrage opportunity was calculated correctly. A note: if this is run in the morning, Yahoo can list all Bid and Ask prices as 0 and this program will not work.
+# Options_Strategies_Graphing
+This function returns a graph showing the possible returns of a portfolio containing calls, puts, and long/short equity based on the stock price at the options' expiration date. 
+options_graph2(Price, Portfolio, title = None, maximum = None, minimum = None)
+
+### Parameters:
+                      Price: float 
+                      ex. Price = 37.5
+                      Portfolio: takes a pandas dataframe. Must be formatted in the below style
+
+                         ex. Portfolio = pd.DataFrame([['Stock', 37.5, -1],
+                                                                               ['Call', 40, 1, 2],
+                                                                               ['Call', 42, 1, .7],
+                                                                               ['Put', 35, 1, 4]],
+                                              columns = ['Asset', 'Strike', 'Number', 'Price'])
+
+                                            The first column takes "Stock", "Call", or "Put" in any order
+                                            The second column takes the strike price of the options or the price of                                                         the stock
+                                            The third column takes the amount of each asset. Negative if the asset is                                                     sold and positive​ if bought. -inf to inf
+​                                            The fourth column takes the strike price of the options. Leave blank for stock
+
+​                      title: str (optional)
+                      ex. "Synthetic Straddle"
+                      maximum: "bounded" or "inf" (optional). Finds maximum returns
+                      minimum: "bounded" or "inf" (optional). Finds maximum losses
