@@ -1,6 +1,7 @@
 # Options_Strategies_Graphing
 This function returns a graph showing the possible returns of a portfolio containing calls, puts, and long/short equity based on the stock price at the options' expiration date. 
 
+## Function
 options_graph2(Price, Portfolio, title = None, maximum = None, minimum = None)
 
 ### Parameters:
@@ -34,7 +35,7 @@ Portfolio = pd.DataFrame([['Stock', 37.5, -1],
                 columns = ['Asset','Strike','Number','Price'])
 options_graph2(Price, Portfolio,'Synthetic Strangle', maximum = 'inf', minimum = 'bounded')
 ```
-#### Bear Spread
+### Bear Spread
 ```
 Price = 32
 Portfolio = pd.DataFrame([['Call', 30, -1, 3],
