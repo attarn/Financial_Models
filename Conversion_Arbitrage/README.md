@@ -1,5 +1,5 @@
 # Coversion_Arbitrage
-'''
+
 This file imports options data from Yahoo and stock price information from Alpha Vantage.
 It puts the options data into a dataframe, filters it by Open Interest, last trade date
 and only includes where there exists calls and puts with the same strike and expiry.
@@ -10,4 +10,4 @@ Black-Scholes prices. Lastly, it selects an option and graphs the synthetic equi
 showing the opportunity for arbitrage and showing that the Conversion Arbitrage
 opportunity was calculated correctly. A note: if this is run in the morning, Yahoo
 can list all Bid and Ask prices as 0 and this program will not work.
-'''
+
