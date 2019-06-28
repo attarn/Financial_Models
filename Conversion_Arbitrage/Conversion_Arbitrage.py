@@ -250,7 +250,7 @@ result.index = temp_index
 ### Finding differences in price between asset and synthetic asset and adding to 'result'
 # This is the Converstion Trading opportunity. It is based on old slow data so it's not
 # useful in real life but it shows that there can be arbitrage opportunities
-Arbitrage = pd.Series(Strike - Stocks + pd.to_numeric(CallIV) - pd.to_numeric(PutIV))
+Arbitrage = pd.Series(Strike*np.exp(rf/100*result['Put','Days_to_expiry']/365) - Stocks + pd.to_numeric(CallIV) - pd.to_numeric(PutIV))
 result = result.assign(Arbitrage=Arbitrage.values)
 
 ### Proving that the Black Scholes Prices satisfy Put-Call Parity. All values are 
